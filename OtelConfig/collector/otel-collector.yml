@@ -4,6 +4,18 @@ receivers:
   otlp:
     protocols:
       grpc:
+  hostmetrics:
+    collection_interval: 20s
+    scrapers:
+      cpu:
+      load:
+      memory:
+      disk:
+      filesystem:
+      network:
+      paging:
+      processes:
+    
 
 #define processing steps that telemetry data goes through before it is exported.
 processors:
@@ -34,7 +46,7 @@ service:
   #order of processors dictates the order in which data is processed
   pipelines:
     metrics:
-      receivers: [otlp]
+      receivers: [otlp,hostmetrics]
       processors: [batch]
       exporters: [prometheusremotewrite]
     traces:
