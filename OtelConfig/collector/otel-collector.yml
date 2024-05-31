@@ -46,7 +46,7 @@ service:
   #order of processors dictates the order in which data is processed
   pipelines:
     metrics:
-      receivers: [otlp,hostmetrics]
+      receivers: [otlp, hostmetrics]
       processors: [batch]
       exporters: [prometheusremotewrite]
     traces:
